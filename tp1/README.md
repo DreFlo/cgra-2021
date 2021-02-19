@@ -1,10 +1,8 @@
 # CGRA 2020/2021
 
-## Group T0xG0y
+## Group T05G02
 
 ## TP 1 Notes
 
-(add your main observations/remarks about your experiments here, in a bulleted list, and remove this line. Some examples below)
-
-- In exercise 1 we observed X
-- In exercise 2 we had difficulties in Y
+- In exercise 1 we had some difficulties connecting the vertices in the right order
+- In exercise 2 we experienced no difficulties.
