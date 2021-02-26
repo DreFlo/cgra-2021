@@ -1,5 +1,6 @@
 import { CGFscene, CGFcamera, CGFaxis } from "../lib/CGF.js";
 import { MyTangram } from "./MyTangram.js";
+import { MyUnitCube} from "./MyUnitCube.js";
 
 /**
  * MyScene
@@ -26,6 +27,7 @@ export class MyScene extends CGFscene {
     //Initialize scene objects
     this.axis = new CGFaxis(this);
     this.tangram = new MyTangram(this);
+    this.cube = new MyUnitCube(this);
     
     //Objects connected to MyInterface
     this.displayAxis = true;
@@ -89,84 +91,20 @@ export class MyScene extends CGFscene {
 
     this.multMatrix(sca);
 
+    // ---- BEGIN Primitive drawing section
+    this.pushMatrix();
+    this.rotate(-Math.PI / 2, 1, 0, 0);
+    this.translate(3.15, -3.15, 0);
+
     this.tangram.display();
 
-    // ---- BEGIN Primitive drawing section
-
-    /**
-    //Diamond Head
     this.pushMatrix();
-
-    var translateDiamond = [ 1.0, 0.0, 0.0, 0.0,
-                             0.0, 1.0, 0.0, 0.0,
-                             0.0, 0.0, 1.0, 0.0,
-                            -1.7, 0.7, 0.0, 1.0]; 
-    this.multMatrix(translateDiamond);
-    this.diamond.display();
-
+    this.translate(0.33, -0.38, -0.52);
+    this.scale(7.0, 7.0, 1);
+    this.cube.display();
     this.popMatrix();
-    
-    this.pushMatrix();
-
-    //TriangleSmall Left ear
-    this.translate(-2.7, 1.7, 0);
-    this.rotate(- Math.PI/2, 0, 0, 1);
-
-    this.trianglesmallLeft.display();
-
     this.popMatrix();
 
-    this.pushMatrix();
-    
-    //TriangleSmall Right ear
-    this.translate(-0.7, 1.7, 0);
-    this.rotate(Math.PI/2, 0, 0, 1);
-
-    this.trianglesmallRight.display();
-
-    this.popMatrix();
-
-    this.pushMatrix();
-
-    //Parallelogram
-    this.translate(1.4, 1.4, 0);
-    this.scale(-1, 1, 1);
-    this.rotate(-Math.PI/4, 0, 0, 1);
-    
-    this.parallelogram.display();
-
-    this.popMatrix();
-
-    this.pushMatrix();
-
-    //Triangle
-    this.translate(1.4, 0, 0);
-    this.rotate(-Math.PI/4, 0, 0, 1);
-
-    this.triangle.display();
-
-    this.popMatrix();
-
-    this.pushMatrix();
-
-    //Triangle Big top
-    this.translate(1.4, -0.6, 0);
-    this.rotate(-Math.PI/2, 0, 0, 1);
-
-    this.trianglebigTop.display();
-
-    this.popMatrix();
-
-    this.pushMatrix();
-
-    //Triangle Big Bottom
-
-    this.translate(2, -2, 0);
-    this.rotate(- 3 * Math.PI/4, 0, 0, 1);
-
-    this.trianglebigBottom.display();
-
-    */
 
     // ---- END Primitive drawing section
 
