@@ -1,54 +1,73 @@
 import {CGFobject} from '../lib/CGF.js';
 /**
- * MyDiamond
+ * MyUnitCube
  * @constructor
  * @param scene - Reference to MyScene object
  */
 export class MyUnitCube extends CGFobject {
-    constructor(scene) {
-        super(scene);
-        this.initBuffers();
-    }
+	constructor(scene) {
+		super(scene);
+		this.initBuffers();
+	}
+	
+	initBuffers() {
+		this.vertices = [
+            //Face frente
+			-0.5,  0.5,  0.5,
+            -0.5, -0.5,  0.5,
+             0.5, -0.5,  0.5,
+             0.5,  0.5,  0.5,
 
-    initBuffers() {
-        this.vertices = [
-            -0.5, -0.5, -0.5,	//0
-            0.5, -0.5, -0.5,	//1
-            0.5, 0.5, -0.5,	    //2
-            -0.5, 0.5, -0.5,	//3
+             //Face trás
+             -0.5, -0.5, -0.5,
+              0.5, -0.5, -0.5,
+              0.5,  0.5, -0.5,
+             -0.5,  0.5, -0.5,];
 
-            -0.5, -0.5, 0.5,	//4
-            0.5, -0.5, 0.5,	    //5
-            0.5, 0.5, 0.5,	    //6
-            -0.5, 0.5, 0.5		//7
-        ];
-
-        //Counter-clockwise reference of vertices
-        this.indices = [
-            //-z face
+		//Counter-clockwise reference of vertices
+		this.indices = [
+			//Face Frente
+            0, 1, 2,
+            2, 3, 0,
             2, 1, 0,
             0, 3, 2,
-            //+z face
-            4, 5, 6,
-            6, 7, 4,
-            //+x face
-            5, 1, 2,
-            2, 6, 5,
-            //-x face
-            3, 0, 4,
-            4, 7, 3,
-            //+y face
-            6, 2, 3,
-            3, 7, 6,
-            //-y face
-            0, 1, 5,
-            5, 4, 0
-        ];
 
-        //The defined indices (and corresponding vertices)
-        //will be read in groups of three to draw triangles
-        this.primitiveType = this.scene.gl.TRIANGLES;
+            //Face trás
+            7, 4, 5,
+            5, 6, 7,
+            5, 4, 7,
+            7, 6, 5,
 
-        this.initGLBuffers();
-    }
+            //Face baixo
+            4, 1, 2,
+            2, 5, 4,
+            2, 1, 4,
+            4, 5, 2,
+
+            //Face cima
+            7, 0, 3,
+            3, 6, 7,
+            3, 0, 7,
+            7, 6, 3,
+
+            //Face esquerda
+            7, 0, 1,
+            1, 4, 7,
+            1, 0, 7,
+            7, 4, 1,
+
+            //Face direita
+            6, 3, 2,
+            2, 5, 6,
+            2, 3, 6,
+            6, 5, 2
+		];
+
+		//The defined indices (and corresponding vertices)
+		//will be read in groups of three to draw triangles
+		this.primitiveType = this.scene.gl.TRIANGLES;
+
+		this.initGLBuffers();
+	}
 }
+
