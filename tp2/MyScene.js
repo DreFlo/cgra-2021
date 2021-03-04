@@ -95,21 +95,18 @@ export class MyScene extends CGFscene {
     this.multMatrix(sca);
 
     // ---- BEGIN Primitive drawing section
+    this.pushMatrix();
     this.rotate(-Math.PI / 2, 1, 0, 0);
-    this.translate(3, -2.85, 0);
+    this.translate(3.15, -3.15, 0);
 
-    if(this.displayTangram) this.tangram.display();
+    if (this.displayTangram) this.tangram.display();
 
-    if(this.displayCube) {
-      this.translate(0, -0.3, -0.55);
-      this.scale(6, 6.25, 1);
-      this.cube.display();
-      this.scale(1 / 6, 1 / 6.25, 1);
-      this.translate(0, -0.3, 0.55);
-    }
-
-    this.translate(3, 2.85, 0);
-    this.rotate(Math.PI / 2, 1, 0, 0);
+    this.pushMatrix();
+    this.translate(0.33, -0.38, -0.52);
+    this.scale(7.0, 7.0, 1);
+    if (this.displayCube) this.cube.display();
+    this.popMatrix();
+    this.popMatrix();
     // ---- END Primitive drawing section
 
     
