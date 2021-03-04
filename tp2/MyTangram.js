@@ -88,6 +88,6 @@ export class MyTangram extends CGFobject{
 
     this.trianglebigBottom.display();
 
-    this.popMatrix();
+    this.scene.popMatrix();
     }
 }

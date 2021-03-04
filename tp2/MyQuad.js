@@ -1,58 +1,33 @@
 import {CGFobject} from '../lib/CGF.js';
-import {MyUnitQuad} from "./MyUnitQuad.js";
-
 /**
  * MyQuad
  * @constructor
  * @param scene - Reference to MyScene object
  */
 export class MyQuad extends CGFobject {
-	constructor(scene) {
-		super(scene);
-        this.square = new MyUnitQuad(scene);
-	}
-	
-	display(){
-        this.scene.pushMatrix();
+        constructor(scene) {
+                super(scene);
+                this.initBuffers();
+        }
 
-        this.square.display();
+        initBuffers() {
+                this.vertices = [
+                        -0.5, -0.5, 0,	//0
+                        0.5, -0.5, 0,	//1
+                        0.5, 0.5, 0,	//2
+                        -0.5, 0.5, 0	//3
+                ];
 
-        this.scene.popMatrix();
+                //Counter-clockwise reference of vertices
+                this.indices = [
+                        0, 1, 2,
+                        2, 3, 0
+                ];
 
-        this.scene.pushMatrix();
+                //The defined indices (and corresponding vertices)
+                //will be read in groups of three to draw triangles
+                this.primitiveType = this.scene.gl.TRIANGLES;
 
-        this.scene.translate(0, 0, -1);
-        this.square.display();
-
-        this.scene.popMatrix();
-
-        this.scene.pushMatrix();
-
-        this.scene.rotate(-Math.PI/2, 1, 0, 0);
-        this.square.display();
-
-        this.scene.popMatrix();
-
-        this.scene.pushMatrix();
-
-        this.scene.rotate(Math.PI/2, 1, 0, 0);
-        this.square.display();
-
-        this.scene.popMatrix();
-
-        this.scene.pushMatrix();
-
-        this.scene.rotate(-Math.PI/2, 0, 1, 0);
-        this.square.display();
-
-        this.scene.popMatrix();
-
-        this.scene.pushMatrix();
-
-        this.scene.rotate(Math.PI/2, 0, 1, 0);
-        this.square.display();
-
-        this.scene.popMatrix();
-        
-    }
+                this.initGLBuffers();
+        }
 }
