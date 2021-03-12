@@ -6,4 +6,4 @@
 
 (add your main observations/remarks about your experiments here, in a bulleted list, and remove this line. Some examples below)
 
-- In exercise 1 we didn't have any considerable doubts.
+- In exercise 2 we had doubts in the filtering.
