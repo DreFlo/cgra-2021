@@ -18,47 +18,42 @@ export class MyCilinder extends CGFobject {
    * Initializes the cilinder buffers
    */
   initBuffers() {
-    this.vertices = [];
-    this.indices = [];
-    this.normals = [];
-    this.texCoords = [];
+      this.vertices = [];
+      this.indices = [];
+      this.normals = [];
+      this.texCoords = [];
 
-    var phi = 0;
-    var phiInc = (2 * Math.PI) / this.slices;
-    var vertex = 0;
-    var sCoord = 0.0;
+      var phi = 0;
+      var phiInc = (2 * Math.PI) / this.slices;
+      var vertex = 0;
+      var sCoord = 0.0;
 
-    for (let div = 0; div <= this.slices; div++, phi += phiInc, sCoord += (1/this.slices)) {
-        var sinPhi = Math.sin(phi);
-        var cosPhi = Math.cos(phi);
+      for (let div = 0; div <= this.slices; div++, phi += phiInc, sCoord += (1/this.slices)) {
+          var sinPhi = Math.sin(phi);
+          var cosPhi = Math.cos(phi);
 
-        //--- Vertices
-        this.vertices.push(cosPhi, -0.5, sinPhi);
-        this.vertices.push(cosPhi, 0.5, sinPhi);
-        this.vertices.push(Math.cos(phi + phiInc), 0.5, Math.sin(phi + phiInc));
-        this.vertices.push(Math.cos(phi + phiInc), -0.5, Math.sin(phi + phiInc));
+          //--- Vertices
+          this.vertices.push(cosPhi, -0.5, sinPhi);
+          this.vertices.push(cosPhi, 0.5, sinPhi);
 
-        //--- Indices
-        if (div < this.slices) {
-            this.indices.push(vertex + 1, vertex + 2, vertex);
-            this.indices.push(vertex + 2, vertex + 3, vertex);
+          //--- Indices
+          if (div < this.slices) {
+              this.indices.push(vertex + 2, vertex, vertex + 1);
+              this.indices.push(vertex + 3, vertex + 2, vertex + 1);
 
-          vertex += 4;
-        }
+              vertex += 2;
+          }
 
-        //--- Normals
-        this.normals.push(cosPhi, 0, sinPhi);
-        this.normals.push(cosPhi, 0, sinPhi);
-        this.normals.push(Math.cos(phi + phiInc), 0, Math.sin(phi + phiInc));
-        this.normals.push(Math.cos(phi + phiInc), 0, Math.sin(phi + phiInc));
+          //--- Normals
+          this.normals.push(cosPhi, 0, sinPhi);
+          this.normals.push(cosPhi, 0, sinPhi);
 
-        //--- Texture Coordinates
-        this.texCoords.push(sCoord, 0);
-        this.texCoords.push(sCoord, 1);
-        this.updateTexCoordsGLBuffers();
-    }
+          //--- Texture Coordinates
+          this.texCoords.push(sCoord, 1);
+          this.texCoords.push(sCoord, 0);
+      }
 
-    this.primitiveType = this.scene.gl.TRIANGLES;
-    this.initGLBuffers();
+      this.primitiveType = this.scene.gl.TRIANGLES;
+      this.initGLBuffers();
   }
 }
