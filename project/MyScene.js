@@ -1,5 +1,6 @@
 import { CGFscene, CGFcamera, CGFaxis, CGFappearance } from "../lib/CGF.js";
 import { MySphere } from "./MySphere.js";
+import { MyMovingObject } from "./MyMovingObject.js";
 
 /**
 * MyScene
@@ -29,6 +30,7 @@ export class MyScene extends CGFscene {
         //Initialize scene objects
         this.axis = new CGFaxis(this);
         this.incompleteSphere = new MySphere(this, 16, 8);
+        this.movingObject = new MyMovingObject(this, Math.PI / 2, 0.3, 0, 0, 0);
 
         this.defaultAppearance = new CGFappearance(this);
 		this.defaultAppearance.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -46,6 +48,8 @@ export class MyScene extends CGFscene {
 
         //Objects connected to MyInterface
         this.displayAxis = true;
+        this.displaySphere = false;
+        this.displayMovingObject = true;
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -68,6 +72,8 @@ export class MyScene extends CGFscene {
     // called periodically (as per setUpdatePeriod() in init())
     update(t){
         //To be done...
+        this.checkKeys();
+        this.movingObject.update();
     }
 
     display() {
@@ -87,12 +93,61 @@ export class MyScene extends CGFscene {
         if (this.displayAxis)
             this.axis.display();
 
-        this.sphereAppearance.apply();
         // ---- BEGIN Primitive drawing section
 
-        //This sphere does not have defined texture coordinates
-        this.incompleteSphere.display();
+        if (this.displaySphere) {
+            this.sphereAppearance.apply();
+
+            //This sphere does not have defined texture coordinates
+            this.incompleteSphere.display();
+        }
+
+        if (this.displayMovingObject) {
+            this.defaultAppearance.apply();
+
+            this.movingObject.display();
+        }
 
         // ---- END Primitive drawing section
+    }
+
+    checkKeys() {
+        let text = "Keys pressed: ";
+        let keysPressed = false;
+
+        // Check for key codes e.g. in https://keycode.info/
+        if (this.gui.isKeyPressed("KeyW")) {
+            this.movingObject.accelerate(0.1);
+            text += " W ";
+            keysPressed = true;
+        }
+
+        if (this.gui.isKeyPressed("KeyS")) {
+            this.movingObject.accelerate(-0.1);
+            text += " S ";
+            keysPressed = true;
+        }
+
+        if (this.gui.isKeyPressed("KeyA")) {
+            this.movingObject.turn(0.1);
+            text += " A ";
+            keysPressed = true;
+        }
+
+        if (this.gui.isKeyPressed("KeyD")) {
+            this.movingObject.turn(-0.1);
+            text += " D ";
+            keysPressed = true;
+        }
+
+        if (this.gui.isKeyPressed("KeyR")) {
+            this.movingObject.reset();
+            text += " R ";
+            keysPressed = true;
+        }
+
+        if (keysPressed) {
+            console.log(text);
+        }
     }
 }
