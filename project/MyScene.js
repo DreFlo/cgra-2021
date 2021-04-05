@@ -30,7 +30,7 @@ export class MyScene extends CGFscene {
         //Initialize scene objects
         this.axis = new CGFaxis(this);
         this.incompleteSphere = new MySphere(this, 16, 8);
-        this.movingObject = new MyMovingObject(this, Math.PI / 2, 0.3, 0, 0, 0);
+        this.movingObject = new MyMovingObject(this, Math.PI / 2, 0.0, 0, 0, 0);
 
         this.defaultAppearance = new CGFappearance(this);
 		this.defaultAppearance.setAmbient(0.2, 0.4, 0.8, 1.0);

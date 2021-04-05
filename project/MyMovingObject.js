@@ -41,6 +41,8 @@ export class MyMovingObject extends CGFobject {
 
     update() {
         this.x += this.speed;
+        this.y += this.speed;
+        this.z += this.speed;
     }
 
     turn(val) {
