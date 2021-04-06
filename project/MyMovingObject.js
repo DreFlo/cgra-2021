@@ -9,9 +9,9 @@ export class MyMovingObject extends CGFobject {
         super(scene);
         this.angleYY = angleYY;
         this.speed = speed;
-        this.x = x;
-        this.y = y;
-        this.z = z;
+        this.pos = [x, y, z];
+
+        this.startPos = [x, y, z];
         this.initBuffers();
     }
 
@@ -34,15 +34,13 @@ export class MyMovingObject extends CGFobject {
     display() {
         this.scene.pushMatrix();
         this.scene.rotate(this.angleYY, 0, 1, 0);
-        this.scene.translate(this.x, this.y, this.z);
+        this.scene.translate(this.pos[0], this.pos[1], this.pos[2]);
         super.display();
         this.scene.popMatrix();
     }
 
     update() {
-        this.x += this.speed;
-        this.y += this.speed;
-        this.z += this.speed;
+        this.pos[0] += this.speed;
     }
 
     turn(val) {
@@ -56,5 +54,6 @@ export class MyMovingObject extends CGFobject {
     reset() {
         this.angleYY = 0;
         this.speed = 0;
+        this.pos = [this.startPos[0], this.startPos[1], this.startPos[2]];
     }
 }
