@@ -37,15 +37,15 @@ export class MyScene extends CGFscene {
                                     'images/demo_cubemap/back.png', 'images/demo_cubemap/right.png', 'images/demo_cubemap/bottom.png');*/
 
         this.cubeMaps = [
-            new MyCubeMap(this, 'images/demo_cubemap/top.png', 'images/demo_cubemap/front.png', 'images/demo_cubemap/left.png', 
+            new MyCubeMap(this, 'images/demo_cubemap/top.png', 'images/demo_cubemap/front.png', 'images/demo_cubemap/left.png',
                                     'images/demo_cubemap/back.png', 'images/demo_cubemap/right.png', 'images/demo_cubemap/bottom.png'),
-            new MyCubeMap(this, 'images/forest_cubemap/top.png', 'images/forest_cubemap/front.png', 'images/forest_cubemap/left.png',
-                                    'images/forest_cubemap/back.png', 'images/forest_cubemap/right.png', 'images/forest_cubemap/bottom.png')
+            new MyCubeMap(this, 'images/yokohama_cubemap/top.png', 'images/yokohama_cubemap/front.png', 'images/yokohama_cubemap/right.png',
+                                    'images/yokohama_cubemap/back.png', 'images/yokohama_cubemap/left.png', 'images/yokohama_cubemap/bottom.png')
         ];
 
         this.cubeMapList = {
             'Default' : 0,
-            'Forest' : 1,
+            'Yokohama' : 1,
         };
 
         this.defaultAppearance = new CGFappearance(this);
