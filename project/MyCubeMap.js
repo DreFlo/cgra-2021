@@ -33,10 +33,10 @@ export class MyCubeMap extends CGFobject {
 	}
 
 	newTexture(mat, texture){
-		mat.setAmbient(0.1, 0.1, 0.1, 1);
-		mat.setDiffuse(0.9, 0.9, 0.9, 1);
-		mat.setSpecular(0.1, 0.1, 0.1, 1);
-		mat.setShininess(10.0);
+		mat.setAmbient(0, 0, 0, 1);
+		mat.setDiffuse(0, 0, 0, 1);
+		mat.setSpecular(0, 0, 0, 1);
+		mat.setEmission(1, 1, 1, 1);
 		mat.loadTexture(texture);
 		mat.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
 	}

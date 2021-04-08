@@ -46,11 +46,12 @@ export class MyQuad extends CGFobject {
         */
 
 		this.texCoords = [
-			0, 1,
-			1, 1,
-			0, 0,
-			1, 0
-		]
+			0.002, 0.998,
+			0.998, 0.998,
+			0.002, 0.002,
+			0.998, 0.002
+		];
+
 		this.primitiveType = this.scene.gl.TRIANGLES;
 		this.initGLBuffers();
 	}

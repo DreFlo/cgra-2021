@@ -33,8 +33,6 @@ export class MyScene extends CGFscene {
         this.axis = new CGFaxis(this);
         this.incompleteSphere = new MySphere(this, 16, 8);
         this.movingObject = new MyMovingObject(this, Math.PI / 2, 0.0, 0, 0, 0);
-        /*this.cubeMap = new MyCubeMap(this, 'images/demo_cubemap/top.png', 'images/demo_cubemap/front.png', 'images/demo_cubemap/left.png', 
-                                    'images/demo_cubemap/back.png', 'images/demo_cubemap/right.png', 'images/demo_cubemap/bottom.png');*/
 
         this.cubeMaps = [
             new MyCubeMap(this, 'images/demo_cubemap/top.png', 'images/demo_cubemap/front.png', 'images/demo_cubemap/left.png',
@@ -66,7 +64,6 @@ export class MyScene extends CGFscene {
         this.displayAxis = true;
         this.displaySphere = false;
         this.displayMovingObject = false;
-        //this.displayCubeMap = true;
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
