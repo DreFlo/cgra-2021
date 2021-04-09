@@ -35,15 +35,15 @@ export class MyScene extends CGFscene {
         this.movingObject = new MyMovingObject(this, Math.PI / 2, 0.0, 0, 0, 0);
 
         this.cubeMaps = [
-            new MyCubeMap(this, 'images/demo_cubemap/top.png', 'images/demo_cubemap/front.png', 'images/demo_cubemap/left.png',
-                                    'images/demo_cubemap/back.png', 'images/demo_cubemap/right.png', 'images/demo_cubemap/bottom.png'),
+            new MyCubeMap(this, 'images/demo_cubemap/top.png', 'images/demo_cubemap/front.png', 'images/demo_cubemap/right.png',
+                                    'images/demo_cubemap/back.png', 'images/demo_cubemap/left.png', 'images/demo_cubemap/bottom.png'),
             new MyCubeMap(this, 'images/yokohama_cubemap/top.png', 'images/yokohama_cubemap/front.png', 'images/yokohama_cubemap/right.png',
                                     'images/yokohama_cubemap/back.png', 'images/yokohama_cubemap/left.png', 'images/yokohama_cubemap/bottom.png')
         ];
 
         this.cubeMapList = {
             'Default' : 0,
-            'Yokohama' : 1,
+            'Yokohama' : 1
         };
 
         this.defaultAppearance = new CGFappearance(this);
@@ -123,10 +123,10 @@ export class MyScene extends CGFscene {
 
         this.defaultAppearance.apply();
 
-        this.pushMatrix();
-        this.translate(this.camera.position[0], this.camera.position[1], this.camera.position[2]);
+        //this.pushMatrix();
+        //this.translate(this.camera.position[0], this.camera.position[1], this.camera.position[2]);
         this.cubeMaps[this.selectedCubeMap].display();
-        this.popMatrix();
+        //this.popMatrix();
 
         // ---- END Primitive drawing section
     }
