@@ -123,10 +123,10 @@ export class MyScene extends CGFscene {
 
         this.defaultAppearance.apply();
 
-        //this.pushMatrix();
-        //this.translate(this.camera.position[0], this.camera.position[1], this.camera.position[2]);
+        this.pushMatrix();
+        this.translate(this.camera.position[0], this.camera.position[1], this.camera.position[2]);
         this.cubeMaps[this.selectedCubeMap].display();
-        //this.popMatrix();
+        this.popMatrix();
 
         // ---- END Primitive drawing section
     }
