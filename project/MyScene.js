@@ -2,6 +2,7 @@ import { CGFscene, CGFcamera, CGFaxis, CGFappearance } from "../lib/CGF.js";
 import { MySphere } from "./MySphere.js";
 import { MyMovingObject } from "./MyMovingObject.js";
 import { MyCubeMap } from "./MyCubeMap.js";
+import { MyCilinder } from "./MyCilinder.js";
 
 /**
 * MyScene
@@ -33,6 +34,7 @@ export class MyScene extends CGFscene {
         this.axis = new CGFaxis(this);
         this.incompleteSphere = new MySphere(this, 16, 8);
         this.movingObject = new MyMovingObject(this, Math.PI / 2, 0.0, 0, 0, 0);
+        this.cilinder = new MyCilinder(this, 8);
 
         this.cubeMaps = [
             new MyCubeMap(this, 'images/demo_cubemap/top.png', 'images/demo_cubemap/front.png', 'images/demo_cubemap/right.png',
@@ -64,6 +66,7 @@ export class MyScene extends CGFscene {
         this.displayAxis = true;
         this.displaySphere = false;
         this.displayMovingObject = false;
+        this.displayCilinder = true;
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -119,6 +122,12 @@ export class MyScene extends CGFscene {
             this.defaultAppearance.apply();
 
             this.movingObject.display();
+        }
+
+        if(this.displayCilinder){
+            this.sphereAppearance.apply();
+
+            this.cilinder.display();
         }
 
         this.defaultAppearance.apply();
