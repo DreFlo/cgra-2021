@@ -125,6 +125,7 @@ export class MyScene extends CGFscene {
         }
 
         if(this.displayCilinder){
+            this.sphereAppearance
             this.sphereAppearance.apply();
 
             this.cilinder.display();
