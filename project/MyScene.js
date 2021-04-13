@@ -1,4 +1,4 @@
-import { CGFscene, CGFcamera, CGFaxis, CGFappearance } from "../lib/CGF.js";
+import { CGFscene, CGFcamera, CGFaxis, CGFappearance, CGFtexture } from "../lib/CGF.js";
 import { MySphere } from "./MySphere.js";
 import { MyMovingObject } from "./MyMovingObject.js";
 import { MyCubeMap } from "./MyCubeMap.js";
@@ -60,7 +60,6 @@ export class MyScene extends CGFscene {
 		this.sphereAppearance.setDiffuse(0.7, 0.7, 0.7, 1);
 		this.sphereAppearance.setSpecular(0.0, 0.0, 0.0, 1);
 		this.sphereAppearance.setShininess(120);
-
 
         //Objects connected to MyInterface
         this.displayAxis = true;
@@ -125,8 +124,7 @@ export class MyScene extends CGFscene {
         }
 
         if(this.displayCilinder){
-            this.sphereAppearance
-            this.sphereAppearance.apply();
+            this.defaultAppearance.apply();
 
             this.cilinder.display();
         }
