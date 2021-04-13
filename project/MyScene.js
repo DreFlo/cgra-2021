@@ -60,6 +60,7 @@ export class MyScene extends CGFscene {
 		this.sphereAppearance.setDiffuse(0.7, 0.7, 0.7, 1);
 		this.sphereAppearance.setSpecular(0.0, 0.0, 0.0, 1);
 		this.sphereAppearance.setShininess(120);
+		this.sphereAppearance.loadTexture("images/earth.jpg");
 
         //Objects connected to MyInterface
         this.displayAxis = true;

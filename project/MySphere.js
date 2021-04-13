@@ -18,7 +18,6 @@ export class MySphere extends CGFobject {
   /**
    * @method initBuffers
    * Initializes the sphere buffers
-   * TODO: DEFINE TEXTURE COORDINATES
    */
   initBuffers() {
     this.vertices = [];
@@ -62,14 +61,12 @@ export class MySphere extends CGFobject {
         // at each vertex, the direction of the normal is equal to 
         // the vector from the center of the sphere to the vertex.
         // in a sphere of radius equal to one, the vector length is one.
-        // therefore, the value of the normal is equal to the position vectro
+        // therefore, the value of the normal is equal to the position vector
         this.normals.push(x, y, z);
         theta += thetaInc;
 
         //--- Texture Coordinates
-        // To be done... 
-        // May need some additional code also in the beginning of the function.
-        
+        this.texCoords.push(theta / (2 * Math.PI), phi / Math.PI);
       }
       phi += phiInc;
     }
