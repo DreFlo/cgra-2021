@@ -67,6 +67,8 @@ export class MyScene extends CGFscene {
         this.displaySphere = false;
         this.displayMovingObject = false;
         this.displayCilinder = true;
+
+        this.speedFactor = 1;
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -77,7 +79,6 @@ export class MyScene extends CGFscene {
     initCameras() {
         this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
     }
-
     setDefaultAppearance() {
         this.setAmbient(0.2, 0.4, 0.8, 1.0);
         this.setDiffuse(0.2, 0.4, 0.8, 1.0);
@@ -85,13 +86,11 @@ export class MyScene extends CGFscene {
         this.setEmission(0,0,0,1);
         this.setShininess(10.0);
     }
-
     // called periodically (as per setUpdatePeriod() in init())
     update(t){
         this.checkKeys();
         this.movingObject.update();
     }
-
     display() {
         // ---- BEGIN Background, camera and axis setup
         // Clear image and depth buffer everytime we update the scene
@@ -139,7 +138,6 @@ export class MyScene extends CGFscene {
 
         // ---- END Primitive drawing section
     }
-
     checkKeys() {
         let text = "Keys pressed: ";
         let keysPressed = false;

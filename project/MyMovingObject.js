@@ -10,6 +10,7 @@ export class MyMovingObject extends CGFobject {
         this.angleYY = angleYY;
         this.speed = speed;
         this.pos = [x, y, z];
+        this.scaleFactor = 1;
 
         this.startPos = [x, y, z];
         this.initBuffers();
@@ -32,7 +33,27 @@ export class MyMovingObject extends CGFobject {
     }
 
     display() {
+        let sca = [
+            this.scaleFactor,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            this.scaleFactor,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            this.scaleFactor,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+        ];
+
         this.scene.pushMatrix();
+        this.scene.multMatrix(sca);
         this.scene.rotate(this.angleYY, 0, 1, 0);
         this.scene.translate(this.pos[0], this.pos[1], this.pos[2]);
         super.display();
@@ -40,7 +61,7 @@ export class MyMovingObject extends CGFobject {
     }
 
     update() {
-        this.pos[0] += this.speed;
+        this.pos[0] += (this.speed * this.scene.speedFactor);
     }
 
     turn(val) {
