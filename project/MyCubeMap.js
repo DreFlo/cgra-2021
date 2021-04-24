@@ -53,7 +53,6 @@ export class MyCubeMap extends CGFobject {
 	display() {
 		//Frente
 		this.frontMat.apply();
-		this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
 		this.scene.pushMatrix();
 		this.scene.scale(500, 500, 500);
 		this.scene.rotate(Math.PI, 0, 1, 0);
@@ -63,7 +62,6 @@ export class MyCubeMap extends CGFobject {
 		
 		//Trás
 		this.backMat.apply();
-		this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
 		this.scene.pushMatrix();
 		this.scene.scale(500, 500, 500);
 		this.scene.translate(0, 0, -0.5);
@@ -72,7 +70,6 @@ export class MyCubeMap extends CGFobject {
 		
 		//Direita
 		this.rightMat.apply();
-		this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
 		this.scene.pushMatrix();
 		this.scene.scale(500, 500, 500);
 		this.scene.translate(0.5, 0, 0);
@@ -82,7 +79,6 @@ export class MyCubeMap extends CGFobject {
 		
 		//Esquerda
 		this.leftMat.apply();
-		this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
 		this.scene.pushMatrix();
 		this.scene.scale(500, 500, 500);
 		this.scene.translate(-0.5, 0, 0);
@@ -92,7 +88,6 @@ export class MyCubeMap extends CGFobject {
 		
 		//Baixo
 		this.bottomMat.apply();
-		this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
 		this.scene.pushMatrix();
 		this.scene.scale(500, 500, 500);
 		this.scene.translate(0, -0.5, 0);
@@ -103,7 +98,6 @@ export class MyCubeMap extends CGFobject {
 		
 		//Cima
 		this.topMat.apply();
-		this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
 		this.scene.pushMatrix();
 		this.scene.scale(500, 500, 500);
 		this.scene.translate(0, 0.5, 0);

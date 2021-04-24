@@ -54,14 +54,15 @@ export class MyMovingObject extends CGFobject {
 
         this.scene.pushMatrix();
         this.scene.multMatrix(sca);
-        this.scene.rotate(this.angleYY, 0, 1, 0);
         this.scene.translate(this.pos[0], this.pos[1], this.pos[2]);
+        this.scene.rotate(this.angleYY, 0, 1, 0);
         super.display();
         this.scene.popMatrix();
     }
 
     update() {
-        this.pos[0] += (this.speed * this.scene.speedFactor);
+        this.pos[0] += (this.speed * this.scene.speedFactor * Math.cos(this.angleYY));
+        this.pos[2] += (this.speed * this.scene.speedFactor * -Math.sin(this.angleYY));
     }
 
     turn(val) {

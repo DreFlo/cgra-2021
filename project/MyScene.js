@@ -3,6 +3,7 @@ import { MySphere } from "./MySphere.js";
 import { MyMovingObject } from "./MyMovingObject.js";
 import { MyCubeMap } from "./MyCubeMap.js";
 import { MyCilinder } from "./MyCilinder.js";
+//import {MyFish} from "./MyFish.js";
 
 /**
 * MyScene
@@ -34,7 +35,8 @@ export class MyScene extends CGFscene {
         this.axis = new CGFaxis(this);
         this.incompleteSphere = new MySphere(this, 16, 8);
         this.movingObject = new MyMovingObject(this, Math.PI / 2, 0.0, 0, 0, 0);
-        this.cilinder = new MyCilinder(this, 8);
+        this.cilinder = new MyCilinder(this, 3);
+        //this.fish = new MyFish(this, 1.0, "never");
 
         this.cubeMaps = [
             new MyCubeMap(this, 'images/demo_cubemap/top.png', 'images/demo_cubemap/front.png', 'images/demo_cubemap/right.png',
@@ -65,8 +67,9 @@ export class MyScene extends CGFscene {
         //Objects connected to MyInterface
         this.displayAxis = true;
         this.displaySphere = false;
-        this.displayMovingObject = false;
-        this.displayCilinder = true;
+        this.displayMovingObject = true;
+        this.displayCilinder = false;
+        //this.displayFish = true;
 
         this.speedFactor = 1;
     }
@@ -124,10 +127,17 @@ export class MyScene extends CGFscene {
         }
 
         if(this.displayCilinder){
-            this.defaultAppearance.apply();
+            this.sphereAppearance.apply();
 
             this.cilinder.display();
         }
+
+        /*
+        if(this.displayFish) {
+            this.defaultAppearance.apply();
+
+            this.fish.display();
+        }*/
 
         this.defaultAppearance.apply();
 
