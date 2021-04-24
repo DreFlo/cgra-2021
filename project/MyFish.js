@@ -11,7 +11,7 @@ export class MyFish extends MyMovingObject {
      * @param  {string} texture - texture path
      */
     constructor(scene, ratio, texture) {
-        super(scene, 0, 0, 0, 0, 0);
+        super(scene, 0, 0, 0, 3, 0);
         this.ratio = ratio;
         this.texture = texture;
         this.initObjects();
@@ -54,6 +54,8 @@ export class MyFish extends MyMovingObject {
         this.scene.pushMatrix();
         this.scene.translate(this.pos[0], this.pos[1], this.pos[2]);
         this.scene.rotate(this.angleYY, 0, 1, 0);
+
+        this.scene.scale(0.285, 0.285, 0.285);
 
         this.eyeAppearance.apply();
         this.scene.setActiveShader(this.eyeShader);
