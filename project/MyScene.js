@@ -36,7 +36,7 @@ export class MyScene extends CGFscene {
         this.incompleteSphere = new MySphere(this, 16, 8);
         this.movingObject = new MyMovingObject(this, Math.PI / 2, 0.0, 0, 0, 0);
         this.cilinder = new MyCilinder(this, 8);
-        this.fish = new MyFish(this, 1.0, "never");
+        this.fish = new MyFish(this, 0.2, "images/scale.png");
 
         this.cubeMaps = [
             new MyCubeMap(this, 'images/demo_cubemap/top.png', 'images/demo_cubemap/front.png', 'images/demo_cubemap/right.png',
@@ -62,7 +62,7 @@ export class MyScene extends CGFscene {
 		this.sphereAppearance.setDiffuse(0.7, 0.7, 0.7, 1);
 		this.sphereAppearance.setSpecular(0.0, 0.0, 0.0, 1);
 		this.sphereAppearance.setShininess(120);
-		this.sphereAppearance.loadTexture("images/earth.jpg");
+		this.sphereAppearance.loadTexture("images/eye.jpg");
 
         //Objects connected to MyInterface
         this.displayAxis = true;
@@ -93,6 +93,7 @@ export class MyScene extends CGFscene {
     update(t){
         this.checkKeys();
         this.movingObject.update();
+        this.fish.update();
     }
     display() {
         // ---- BEGIN Background, camera and axis setup
@@ -133,7 +134,6 @@ export class MyScene extends CGFscene {
         }
 
         if(this.displayFish) {
-            this.defaultAppearance.apply();
             this.fish.display();
         }
 
@@ -153,30 +153,35 @@ export class MyScene extends CGFscene {
         // Check for key codes e.g. in https://keycode.info/
         if (this.gui.isKeyPressed("KeyW")) {
             this.movingObject.accelerate(-0.1);
+            this.fish.accelerate(-0.1);
             text += " W ";
             keysPressed = true;
         }
 
         if (this.gui.isKeyPressed("KeyS")) {
             this.movingObject.accelerate(0.1);
+            this.fish.accelerate(0.1);
             text += " S ";
             keysPressed = true;
         }
 
         if (this.gui.isKeyPressed("KeyA")) {
             this.movingObject.turn(0.1);
+            this.fish.turn(0.1);
             text += " A ";
             keysPressed = true;
         }
 
         if (this.gui.isKeyPressed("KeyD")) {
             this.movingObject.turn(-0.1);
+            this.fish.turn(-0.1);
             text += " D ";
             keysPressed = true;
         }
 
         if (this.gui.isKeyPressed("KeyR")) {
             this.movingObject.reset();
+            this.fish.reset();
             text += " R ";
             keysPressed = true;
         }
