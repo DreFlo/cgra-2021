@@ -33,8 +33,8 @@ export class MyCilinder extends CGFobject {
           var cosPhi = Math.cos(phi);
 
           //--- Vertices
-          this.vertices.push(cosPhi, -0.5, sinPhi);
-          this.vertices.push(cosPhi, 0.5, sinPhi);
+          this.vertices.push(cosPhi, 0, sinPhi);
+          this.vertices.push(cosPhi, 1, sinPhi);
 
           //--- Indices
           if (div < this.slices) {
