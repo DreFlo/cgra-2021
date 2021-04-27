@@ -14,6 +14,8 @@ export class MyFish extends MyMovingObject {
         super(scene, 0, 0, 0, 3, 0);
         this.ratio = ratio;
         this.texture = texture;
+        this.timeFactor = 1;
+        this.bla = 1.0;
         this.initObjects();
         this.initAppearances(texture);
         this.initShaders();
@@ -89,6 +91,7 @@ export class MyFish extends MyMovingObject {
         //Tail
         this.scene.pushMatrix();
         this.scene.translate(1.75, 0, 0);
+        this.scene.rotate(this.tailAngle, 0, 1, 0);
         this.tail.display();
         this.scene.popMatrix();
 
@@ -97,6 +100,7 @@ export class MyFish extends MyMovingObject {
         this.scene.translate(-0.5, -0.25, 0.75);
         this.scene.scale(0.75, 0.75, 0.75);
         this.scene.rotate(-Math.PI / 4, 1, 0, 0);
+        this.scene.rotate(this.sideFinAngle, 1, 0, 0);
         this.rightFin.display();
         this.scene.popMatrix();
 
@@ -105,6 +109,7 @@ export class MyFish extends MyMovingObject {
         this.scene.translate(-0.5, -0.25, -0.75);
         this.scene.scale(0.75, 0.75, 0.75);
         this.scene.rotate(Math.PI / 4, 1, 0, 0);
+        this.scene.rotate(-this.sideFinAngle, 1, 0, 0);
         this.leftFin.display();
         this.scene.popMatrix();
 
@@ -121,5 +126,11 @@ export class MyFish extends MyMovingObject {
         this.scene.popMatrix();
 
         this.scene.defaultAppearance.apply();
+    }
+
+    update(t){
+        super.update();
+        this.tailAngle = Math.sin(t) * ((20 * Math.PI) / 180);
+        this.sideFinAngle = Math.sin(t / 2) * ((10 * Math.PI) / 180)
     }
 }
