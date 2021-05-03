@@ -9,13 +9,14 @@ export class MyFish extends MyMovingObject {
      * @param  {CGFscene} scene - MyScene object
      * @param  {number} ratio - sphere texture ratio
      * @param  {string} texture - texture path
+     * @param  {Array} colour - colour for fish body
      */
-    constructor(scene, ratio, texture) {
+    constructor(scene, ratio, texture, colour) {
         super(scene, 0, 0, 0, 3, 0);
         this.ratio = ratio;
         this.texture = texture;
+        this.colour = colour;
         this.timeFactor = 1;
-        this.bla = 1.0;
         this.initObjects();
         this.initAppearances(texture);
         this.initShaders();
@@ -39,8 +40,8 @@ export class MyFish extends MyMovingObject {
         this.eyeAppearance.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
 
         this.appearance = new CGFappearance(this.scene);
-        this.appearance.setAmbient(1, 1, 1, 1);
-        this.appearance.setDiffuse(1, 1, 1, 1);
+        this.appearance.setDiffuse(this.colour[0], this.colour[1], this.colour[2], 1);
+        this.appearance.setAmbient(this.colour[0], this.colour[1], this.colour[2], 1);
         this.appearance.loadTexture(texture);
         this.appearance.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
     }
@@ -50,6 +51,7 @@ export class MyFish extends MyMovingObject {
 
         this.bodyShader = new CGFshader(this.scene.gl, "shaders/body.vert", "shaders/body.frag");
         this.bodyShader.setUniformsValues({ ratio: this.ratio});
+        this.bodyShader.setUniformsValues({ bodyColour : this.colour})
     }
 
     display() {
@@ -57,30 +59,9 @@ export class MyFish extends MyMovingObject {
         this.scene.translate(this.pos[0], this.pos[1], this.pos[2]);
         this.scene.rotate(this.angleYY, 0, 1, 0);
 
-        this.scene.scale(0.285, 0.285, 0.285);
-
-        this.eyeAppearance.apply();
-        this.scene.setActiveShader(this.eyeShader);
-
-        //Right Eye
-        this.scene.pushMatrix();
-        this.scene.scale(0.25, 0.25, 0.25);
-        this.scene.translate(-4, 1, 2);
-        this.scene.rotate(-Math.PI / 6, 0, 1, 0);
-        this.eye.display();
-        this.scene.popMatrix();
-
-
-        //Left Eye
-        this.scene.pushMatrix();
-        this.scene.scale(0.25, 0.25, 0.25);
-        this.scene.translate(-4, 1, -2);
-        this.scene.rotate(Math.PI / 6, 0, 1, 0);
-        this.eye.display();
-        this.scene.popMatrix();
+        this.scene.scale(0.285/2, 0.285/2, 0.285/2);
 
         this.appearance.apply();
-        this.scene.setActiveShader(this.scene.defaultShader);
 
         //Top Fin
         this.scene.pushMatrix();
@@ -122,6 +103,28 @@ export class MyFish extends MyMovingObject {
         this.scene.popMatrix();
 
         this.scene.setActiveShader(this.scene.defaultShader);
+
+        
+
+        this.eyeAppearance.apply();
+        this.scene.setActiveShader(this.eyeShader);
+
+        //Right Eye
+        this.scene.pushMatrix();
+        this.scene.scale(0.25, 0.25, 0.25);
+        this.scene.translate(-4, 1, 2);
+        this.scene.rotate(-Math.PI / 6, 0, 1, 0);
+        this.eye.display();
+        this.scene.popMatrix();
+
+
+        //Left Eye
+        this.scene.pushMatrix();
+        this.scene.scale(0.25, 0.25, 0.25);
+        this.scene.translate(-4, 1, -2);
+        this.scene.rotate(Math.PI / 6, 0, 1, 0);
+        this.eye.display();
+        this.scene.popMatrix();
 
         this.scene.popMatrix();
 

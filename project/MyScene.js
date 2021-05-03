@@ -4,6 +4,11 @@ import { MyMovingObject } from "./MyMovingObject.js";
 import { MyCubeMap } from "./MyCubeMap.js";
 import { MyCilinder } from "./MyCilinder.js";
 import { MyFish } from "./MyFish.js";
+import { MySeaFloor } from "./MySeaFloor.js";
+import { MyWaterSurface } from "./MyWaterSurface.js";
+import { MyRock } from "./MyRock.js";
+import { MyRockSet } from "./MyRockSet.js";
+import { MyPillar } from "./MyPillar.js";
 
 /**
 * MyScene
@@ -36,18 +41,30 @@ export class MyScene extends CGFscene {
         this.incompleteSphere = new MySphere(this, 16, 8);
         this.movingObject = new MyMovingObject(this, Math.PI / 2, 0.0, 0, 0, 0);
         this.cilinder = new MyCilinder(this, 8);
-        this.fish = new MyFish(this, 0.2, "images/scale.png");
+        this.fish = new MyFish(this, 0.2, "images/scale.png", [0.76, 0.54, 0.89]);
+        this.seaFloor = new MySeaFloor(this, 20, 50, 1);
+        this.seaSurface = new MyWaterSurface(this);
+        this.rockSet = new MyRockSet(this);
+        this.pillar1 = new MyPillar(this);
+        this.pillar2 = new MyPillar(this);
+        this.pillar3 = new MyPillar(this);
+        this.pillar4 = new MyPillar(this);
+        this.pillar5 = new MyPillar(this);
+        this.pillar6 = new MyPillar(this);
 
         this.cubeMaps = [
             new MyCubeMap(this, 'images/demo_cubemap/top.png', 'images/demo_cubemap/front.png', 'images/demo_cubemap/right.png',
                                     'images/demo_cubemap/back.png', 'images/demo_cubemap/left.png', 'images/demo_cubemap/bottom.png'),
             new MyCubeMap(this, 'images/yokohama_cubemap/top.png', 'images/yokohama_cubemap/front.png', 'images/yokohama_cubemap/right.png',
-                                    'images/yokohama_cubemap/back.png', 'images/yokohama_cubemap/left.png', 'images/yokohama_cubemap/bottom.png')
+                                    'images/yokohama_cubemap/back.png', 'images/yokohama_cubemap/left.png', 'images/yokohama_cubemap/bottom.png'),
+            new MyCubeMap(this, 'images/underwater_cubemap/top.jpg', 'images/underwater_cubemap/front.jpg', 'images/underwater_cubemap/left.jpg',
+                                    'images/underwater_cubemap/back.jpg', 'images/underwater_cubemap/right.jpg', 'images/underwater_cubemap/bottom.jpg')
         ];
 
         this.cubeMapList = {
             'Default' : 0,
-            'Yokohama' : 1
+            'Yokohama' : 1,
+            'Underwater' : 2
         };
 
         this.defaultAppearance = new CGFappearance(this);
@@ -80,7 +97,7 @@ export class MyScene extends CGFscene {
         this.lights[0].update();
     }
     initCameras() {
-        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
+        this.camera = new CGFcamera(2, 0.1, 500, vec3.fromValues(2, 2, 2), vec3.fromValues(0, 2, 0));
     }
     setDefaultAppearance() {
         this.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -94,6 +111,7 @@ export class MyScene extends CGFscene {
         this.checkKeys();
         this.movingObject.update();
         this.fish.update(t / 100);
+        this.seaSurface.update(t);
     }
     display() {
         // ---- BEGIN Background, camera and axis setup
@@ -136,6 +154,43 @@ export class MyScene extends CGFscene {
         if(this.displayFish) {
             this.fish.display();
         }
+
+        //Underwater Scene
+        this.seaFloor.display();
+        this.seaSurface.display();
+        this.rockSet.display();
+
+        //Pillars
+        this.pushMatrix();
+        this.translate(24, 0, -0.5);
+        this.pillar1.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(24, 0, -3.5);
+        this.pillar2.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(3, 0, -0.5);
+        this.pillar3.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(3, 0, -3.5);
+        this.pillar4.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(13.5, 0, -0.5);
+        this.pillar5.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(13.5, 0, -3.5);
+        this.pillar6.display();
+        this.popMatrix();
+
 
         this.defaultAppearance.apply();
 
