@@ -11,6 +11,7 @@ import { MyRockSet } from "./MyRockSet.js";
 import { MyPillar } from "./MyPillar.js";
 import {MySeaweed} from "./MySeaweed.js";
 import {MySeaweedSet} from "./MySeaweedSet.js";
+import {MyMovingFish} from "./MyMovingFish.js";
 
 /**
 * MyScene
@@ -43,7 +44,7 @@ export class MyScene extends CGFscene {
         this.incompleteSphere = new MySphere(this, 16, 8);
         this.movingObject = new MyMovingObject(this, Math.PI / 2, 0.0, 0, 0, 0);
         this.cilinder = new MyCilinder(this, 8);
-        this.fish = new MyFish(this, 0.2, "images/scale.png", [0.76, 0.54, 0.89]);
+        this.fish = new MyMovingFish(this, 0.2, 0.0, [0, 3, 0], [0.76, 0.54, 0.89], "images/scale.png");
         this.seaFloor = new MySeaFloor(this, 20, 50, 1);
         this.seaSurface = new MyWaterSurface(this);
         this.rockSet = new MyRockSet(this);
@@ -217,37 +218,44 @@ export class MyScene extends CGFscene {
 
         // Check for key codes e.g. in https://keycode.info/
         if (this.gui.isKeyPressed("KeyW")) {
-            this.movingObject.accelerate(-0.1);
             this.fish.accelerate(-0.1);
             text += " W ";
             keysPressed = true;
         }
 
         if (this.gui.isKeyPressed("KeyS")) {
-            this.movingObject.accelerate(0.1);
             this.fish.accelerate(0.1);
             text += " S ";
             keysPressed = true;
         }
 
         if (this.gui.isKeyPressed("KeyA")) {
-            this.movingObject.turn(0.1);
             this.fish.turn(0.1);
             text += " A ";
             keysPressed = true;
-        }
-
-        if (this.gui.isKeyPressed("KeyD")) {
-            this.movingObject.turn(-0.1);
+        } else if (this.gui.isKeyPressed("KeyD")) {
             this.fish.turn(-0.1);
             text += " D ";
             keysPressed = true;
+        } else {
+            this.fish.turn(0);
         }
 
         if (this.gui.isKeyPressed("KeyR")) {
-            this.movingObject.reset();
             this.fish.reset();
             text += " R ";
+            keysPressed = true;
+        }
+
+        if (this.gui.isKeyPressed("KeyP")) {
+            this.fish.elevate(0.1);
+            text += " P ";
+            keysPressed = true;
+        }
+
+        if (this.gui.isKeyPressed("KeyL")) {
+            this.fish.lower(0.1);
+            text += " L ";
             keysPressed = true;
         }
 
