@@ -9,6 +9,8 @@ import { MyWaterSurface } from "./MyWaterSurface.js";
 import { MyRock } from "./MyRock.js";
 import { MyRockSet } from "./MyRockSet.js";
 import { MyPillar } from "./MyPillar.js";
+import {MySeaweed} from "./MySeaweed.js";
+import {MySeaweedSet} from "./MySeaweedSet.js";
 
 /**
 * MyScene
@@ -51,6 +53,12 @@ export class MyScene extends CGFscene {
         this.pillar4 = new MyPillar(this);
         this.pillar5 = new MyPillar(this);
         this.pillar6 = new MyPillar(this);
+
+        this.seaweeds = [];
+
+        for (let i = 0; i < Math.ceil(Math.random() * 20); i++) {
+            this.seaweeds.push(new MySeaweedSet(this, [-25 + Math.random() * 50, 0.5, -25 + Math.random() * 50]));
+        }
 
         this.cubeMaps = [
             new MyCubeMap(this, 'images/demo_cubemap/top.png', 'images/demo_cubemap/front.png', 'images/demo_cubemap/right.png',
@@ -190,6 +198,8 @@ export class MyScene extends CGFscene {
         this.translate(13.5, 0, -3.5);
         this.pillar6.display();
         this.popMatrix();
+
+        for (let i = 0; i < this.seaweeds.length; i++) this.seaweeds[i].display();
 
 
         this.defaultAppearance.apply();

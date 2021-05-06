@@ -6,6 +6,9 @@ export class MySeaFloor extends CGFobject {
   /**
    * @method constructor
    * @param  {CGFscene} scene - MyScene object
+   * @param {int} nDivs - number of divisions in each side of the plane
+   * @param {int} size - size of the side of the plane
+   * @param {int} maxHeight - maximum height of the  sea floor surface
    */
   constructor(scene, nDivs, size, maxHeight) {
     super(scene);
@@ -18,11 +21,6 @@ export class MySeaFloor extends CGFobject {
     this.sandMap = new CGFtexture(this.scene, "images/sandMap.png");
 
     this.sandAppearance = new CGFappearance(this.scene);
-    this.sandAppearance.setAmbient(0.2, 0.4, 0.8, 1.0);
-    this.sandAppearance.setDiffuse(0.2, 0.4, 0.8, 1.0);
-    this.sandAppearance.setSpecular(0.2, 0.4, 0.8, 1.0);
-    this.sandAppearance.setEmission(0, 0, 0, 1);
-    this.sandAppearance.setShininess(120);
     this.sandAppearance.setTexture(this.sandTexture);
     this.sandAppearance.setTextureWrap('REPEAT', 'REPEAT');
 

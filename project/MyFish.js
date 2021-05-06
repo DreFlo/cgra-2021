@@ -1,7 +1,8 @@
 import {CGFappearance, CGFobject, CGFshader, CGFtexture} from '../lib/CGF.js';
 import {MySphere} from "./MySphere.js";
-import {MyFinTriangle, MyTailTriangle} from "./MyTriangle.js"
+import {MyTailTriangle} from "./MyTailTriangle.js"
 import {MyMovingObject} from "./MyMovingObject.js";
+import {MyFinTriangle} from "./MyFinTriangle.js";
 
 export class MyFish extends MyMovingObject {
     /**
