@@ -11,13 +11,9 @@ export class MyRockSet extends CGFobject {
 
     this.rockSet = [];
 
-    this.nRocks = Math.random() * (40 - 25) + 25;
+    this.nRocks = 30;
 
     //this.nRocks = 15; //For Picture
-
-    for(var i = 0; i < this.nRocks; i++){
-        this.rockSet.push(new MyRock(this.scene, 16, 16));
-    }
 
     this.appearance = new CGFappearance(this.scene);
     this.appearance.setAmbient(...this.hexToRgbA("#262626"));
@@ -26,16 +22,8 @@ export class MyRockSet extends CGFobject {
     this.appearance.setEmission(0, 0, 0, 1);
     this.appearance.setShininess(120);
 
-    this.translates = new Array(this.nRocks.length);
-    this.scales = new Array(this.nRocks.length);
-    for(var i = 0; i < this.rockSet.length; i++){
-        this.translates[i] = new Array(3);
-        this.scales[i] = new Array(3);
-    }
-
-    for(var i = 0; i < this.rockSet.length; i++){
-        this.translates[i] = [Math.random() * 50 - 25, 0.5, Math.random() * 50 - 25]
-        this.scales[i] = [Math.random() * 2 / 10, Math.random() * 2 / 10, Math.random() * 2 / 10];
+    for(let i = 0; i < this.nRocks; i++){
+        this.rockSet.push(new MyRock(this.scene, 16, 16, [Math.random() * 50 - 25, 0.5, Math.random() * 50 - 25], [0.1 + Math.random() * 0.1, 0.1 + Math.random() * 0.1, 0.1 + Math.random() * 0.1]));
     }
 
     /*
@@ -48,12 +36,8 @@ export class MyRockSet extends CGFobject {
 
   display(){
     this.appearance.apply();
-    for(var i = 0; i < this.rockSet.length; i++){
-        this.scene.pushMatrix();
-        this.scene.translate(this.translates[i][0], this.translates[i][1], this.translates[i][2]);
-        this.scene.scale(this.scales[i][0], this.scales[i][1], this.scales[i][2]);
+    for(let i = 0; i < this.rockSet.length; i++){
         this.rockSet[i].display();
-        this.scene.popMatrix();
     }
   }
 

@@ -24,7 +24,7 @@ export class MySeaFloor extends CGFobject {
     this.sandAppearance.setTexture(this.sandTexture);
     this.sandAppearance.setTextureWrap('REPEAT', 'REPEAT');
 
-    this.shell = new MyShell(this.scene, 16, 16);
+    this.shell = new MyShell(this.scene, 16, 16, [-5, 0.8, -12]);
 
     this.shellX = -5;
     this.shellZ = -12;
@@ -61,12 +61,7 @@ export class MySeaFloor extends CGFobject {
     this.scene.setActiveShader(this.scene.defaultShader);
     this.shellAppearance.apply();
 
-    this.scene.pushMatrix();
-    this.scene.translate(this.shellX, 0.87, this.shellZ);
-    this.scene.rotate(- Math.PI / 2, 1, 0, 0);
-    this.scene.scale(2, 2, 0.25);
     this.shell.display();
-    this.scene.popMatrix();
   }
 
   getShellX(){

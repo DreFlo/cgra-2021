@@ -9,7 +9,7 @@ uniform sampler2D uSampler2;
 uniform float timeFactor;
 
 void main() {
-	vec4 distortion = texture2D(uSampler2, vTextureCoord + (timeFactor / 500.0));
+	vec4 distortion = texture2D(uSampler2, vTextureCoord + (timeFactor / 100.0));
 	
 	vec2 textCoord = vTextureCoord;
 	textCoord.s += (distortion.r - 0.5) * 0.4;

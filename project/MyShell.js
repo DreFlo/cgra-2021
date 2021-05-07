@@ -7,10 +7,13 @@ export class MyShell extends CGFobject {
    * @param  {int} slices - number of slices around Y axis
    * @param  {int} stacks - number of stacks along Y axis, from the center to the poles (half of sphere)
    */
-  constructor(scene, slices, stacks) {
+  constructor(scene, slices, stacks, pos) {
     super(scene);
     this.latDivs = stacks * 2;
     this.longDivs = slices;
+    this.pos = pos;
+    this.rocks = [];
+    this.radius = 2;
 
     this.initBuffers();
   }
@@ -77,5 +80,20 @@ export class MyShell extends CGFobject {
 
     this.primitiveType = this.scene.gl.TRIANGLES;
     this.initGLBuffers();
+  }
+
+  display() {
+    this.scene.pushMatrix();
+    this.scene.translate(...this.pos);
+    this.scene.rotate(- Math.PI / 2, 1, 0, 0);
+    this.scene.scale(2, 2, 0.25);
+    super.display();
+    this.scene.popMatrix();
+  }
+
+  addRock(rock) {
+    this.rocks.push(rock);
+    rock.pos = this.pos;
+    rock.inShell = true;
   }
 }

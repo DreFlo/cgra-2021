@@ -47,7 +47,7 @@ export class MyScene extends CGFscene {
         this.fish = new MyMovingFish(this, 0.2, 0.0, [0, 3, 0], [0.76, 0.54, 0.89], "images/scale.png");
         this.seaFloor = new MySeaFloor(this, 20, 50, 1);
         this.seaSurface = new MyWaterSurface(this);
-        this.rockSet = new MyRockSet(this);
+        this.rocks = new MyRockSet(this);
         this.pillar1 = new MyPillar(this);
         this.pillar2 = new MyPillar(this);
         this.pillar3 = new MyPillar(this);
@@ -167,7 +167,7 @@ export class MyScene extends CGFscene {
         //Underwater Scene
         this.seaFloor.display();
         this.seaSurface.display();
-        this.rockSet.display();
+        this.rocks.display();
 
         //Pillars
         this.pushMatrix();
@@ -256,6 +256,13 @@ export class MyScene extends CGFscene {
         if (this.gui.isKeyPressed("KeyL")) {
             this.fish.lower(0.1);
             text += " L ";
+            keysPressed = true;
+        }
+
+        if (this.gui.isKeyPressed("KeyC")) {
+            if (this.fish.rock === null) this.fish.capture();
+            else this.fish.release();
+            text += " C ";
             keysPressed = true;
         }
 

@@ -6,11 +6,17 @@ export class MyRock extends CGFobject {
    * @param  {CGFscene} scene - MyScene object
    * @param  {int} slices - number of slices around Y axis
    * @param  {int} stacks - number of stacks along Y axis, from the center to the poles (half of sphere)
+   * @param {number[]} pos
+   * @param {number[]} scale
    */
-  constructor(scene, slices, stacks) {
+  constructor(scene, slices, stacks, pos, scale) {
     super(scene);
     this.latDivs = stacks * 2;
     this.longDivs = slices;
+    this.pos = pos
+    this.startPos = pos;
+    this.scale = scale;
+    this.inShell = false;
 
     this.initBuffers();
   }
@@ -47,11 +53,11 @@ export class MyRock extends CGFobject {
         var y = cosPhi * (Math.cos(Math.random()));
         var z = Math.sin(-theta) * sinPhi * (Math.cos(Math.random()));
 
-        if(longitude == 0){
+        if(longitude === 0){
             this.first = [x, y, z];
         }
         
-        if(longitude == this.longDivs){
+        if(longitude === this.longDivs){
             x = this.first[0];
             y = this.first[1];
             z = this.first[2];
@@ -87,5 +93,17 @@ export class MyRock extends CGFobject {
 
     this.primitiveType = this.scene.gl.TRIANGLES;
     this.initGLBuffers();
+  }
+
+  display() {
+    this.scene.pushMatrix();
+    this.scene.translate(...this.pos);
+    this.scene.scale(...this.scale);
+    super.display();
+    this.scene.popMatrix();
+  }
+
+  resetPos() {
+    this.pos = [...this.startPos];
   }
 }
