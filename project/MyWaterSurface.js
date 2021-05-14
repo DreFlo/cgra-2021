@@ -43,6 +43,6 @@ export class MyWaterSurface extends CGFobject {
     }
 
     update(t){
-        this.shader.setUniformsValues({timeFactor : t / 100 % 100});
+        this.shader.setUniformsValues({timeFactor : t / 200 % 100});
     }
 }

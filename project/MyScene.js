@@ -120,7 +120,7 @@ export class MyScene extends CGFscene {
         this.checkKeys();
         this.movingObject.update();
         this.fish.update(t / 100);
-        this.seaSurface.update(t);
+        this.seaSurface.update(t );
     }
     display() {
         // ---- BEGIN Background, camera and axis setup
