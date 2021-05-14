@@ -24,12 +24,12 @@ export class MySeaFloor extends CGFobject {
     this.sandAppearance.setTexture(this.sandTexture);
     this.sandAppearance.setTextureWrap('REPEAT', 'REPEAT');
 
-    this.shell = new MyShell(this.scene, 16, 16, [-5, 0.8, -12]);
-
     this.shellX = -5;
-    this.shellZ = -12;
+    this.shellZ = -10.5;
 
-    //Image base: https://pxhere.com/en/photo/1452631
+    this.shell = new MyShell(this.scene, 16, 16, [this.shellX, 0.8, this.shellZ]);
+
+    //Imagem base: https://pxhere.com/en/photo/1452631
     this.shellTexture = new CGFtexture(this.scene, "images/shell3.png");
 
     this.shellAppearance = new CGFappearance(this.scene);

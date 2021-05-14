@@ -248,13 +248,13 @@ export class MyScene extends CGFscene {
         }
 
         if (this.gui.isKeyPressed("KeyP")) {
-            this.fish.elevate(0.1);
+            this.fish.elevate();
             text += " P ";
             keysPressed = true;
         }
 
         if (this.gui.isKeyPressed("KeyL")) {
-            this.fish.lower(0.1);
+            this.fish.lower();
             text += " L ";
             keysPressed = true;
         }
