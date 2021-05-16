@@ -20,7 +20,7 @@ import {MyMovingFish} from "./MyMovingFish.js";
 export class MyScene extends CGFscene {
     constructor() {
         super();
-        this.selectedCubeMap = 0;
+        this.selectedCubeMap = 2;
     }
     init(application) {
         super.init(application);
@@ -57,8 +57,13 @@ export class MyScene extends CGFscene {
 
         this.seaweeds = [];
 
-        for (let i = 0; i < Math.ceil(Math.random() * 20); i++) {
-            this.seaweeds.push(new MySeaweedSet(this, [-25 + Math.random() * 50, 0.5, -25 + Math.random() * 50]));
+        for (let i = 0; i < Math.floor(Math.random() * 10) + 10; i++) {
+            var pos = [-24 + Math.random() * 49, 0.5, -24 + Math.random() * 49];
+            if(Math.abs(pos[0] - this.seaFloor.shellX) < 3 || Math.abs(pos[2] - this.seaFloor.shellZ) < 3){
+                i--;
+                continue;
+            }
+            this.seaweeds.push(new MySeaweedSet(this, pos));
         }
 
         this.cubeMaps = [

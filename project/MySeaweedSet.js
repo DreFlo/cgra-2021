@@ -4,22 +4,24 @@ import {MySeaweed} from "./MySeaweed.js";
 export class MySeaweedSet extends CGFobject {
     constructor(scene, pos) {
         super(scene);
-        this.seaweed = new MySeaweed(this.scene, pos, 1);
+        this.numberSeaweeds = Math.floor(Math.random() * (10 - 5)) + 5;
+        console.log(this.numberSeaweeds);
+        this.seaweeds = [];
+        for(var i = 0; i < this.numberSeaweeds; i++){
+            console.log("CREATED");
+            this.seaweeds.push(new MySeaweed(this.scene, this.sumArrays(pos, [Math.random() - 0.5, 0, Math.random() - 0.5]),
+                                 Math.random() + 1, [Math.random(), Math.random(), Math.random(), 1.0]));
+        }
     }
 
     display() {
-        this.displayAt([0.1, 0, 0.3]);
-        this.displayAt([0.2, 0, -0.1]);
-        this.displayAt([0, 0, 0.3]);
-        this.displayAt([0.15, 0, 0]);
-
+        this.seaweeds.forEach(element => {
+            element.display();
+        });
     }
 
-    displayAt(pos) {
-        this.scene.pushMatrix();
-        this.scene.translate(...pos);
-        this.seaweed.display();
-        this.scene.pushMatrix();
+    sumArrays(array1, array2){
+        return [array1[0] + array2[0], array1[1] + array2[1], array1[2] + array2[2]];
     }
 
 }

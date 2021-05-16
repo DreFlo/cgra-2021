@@ -6,45 +6,45 @@ export class MySeaweed extends CGFobject {
      * @param {number[]} pos
      * @param {number} scale
      */
-    constructor(scene, pos, scale) {
+    constructor(scene, pos, scale, colour) {
         super(scene);
         this.pos = pos;
         this.scale = scale;
+        this.colour = colour;
         this.initAppearance();
         this.initBuffers();
     }
 
     initAppearance() {
         this.appearance = new CGFappearance(this.scene);
-        this.appearance.setColor(0.05, 0.7, 0.2, 1.0);
+        this.appearance.setColor(...this.colour);
     }
 
     initBuffers() {
         this.vertices = [
-            -1,  0, 0,
-            0, 1, 0,
-            1, 0, 0,
-
-            -1,  0, 0,
-            0, 1, 0,
-            1, 0, 0
-
+             0.0, 1.0,  0.0,
+             0.3, 0.0,  0.0,
+            -0.3, 0.0,  0.0,
+             0.0, 0.0,  0.3,
+             0.0, 0.0, -0.3
         ];
 
         //Counter-clockwise reference of vertices
         this.indices = [
-            0, 1, 2,
-            5, 4, 3
+            0, 3, 1,
+            0, 1, 4,
+            0, 4, 2,
+            0, 2, 3
         ];
 
         this.normals = [
-            0, 0, 1,
+            /*0, 0, 1,
             0, 0, 1,
             0, 0, 1,
 
             0, 0, -1,
             0, 0, -1,
-            0, 0, -1
+            0, 0, -1*/
         ]
 
         //The defined indices (and corresponding vertices)
@@ -58,7 +58,7 @@ export class MySeaweed extends CGFobject {
         this.scene.pushMatrix();
         this.appearance.apply();
         this.scene.translate(...this.pos);
-        this.scene.scale(0.1 * this.scale, 0.7 * this.scale, this.scale);
+        this.scene.scale(this.scale * 0.3, this.scale, this.scale * 0.3);
         super.display();
         this.scene.popMatrix();
     }
