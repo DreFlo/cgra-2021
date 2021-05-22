@@ -12,6 +12,7 @@ import { MyPillar } from "./MyPillar.js";
 import {MySeaweed} from "./MySeaweed.js";
 import {MySeaweedSet} from "./MySeaweedSet.js";
 import {MyMovingFish} from "./MyMovingFish.js";
+import {CGFcamera2} from "./CGFcamera2.js";
 
 /**
 * MyScene
@@ -20,7 +21,7 @@ import {MyMovingFish} from "./MyMovingFish.js";
 export class MyScene extends CGFscene {
     constructor() {
         super();
-        this.selectedCubeMap = 0;
+        this.selectedCubeMap = 2;
     }
     init(application) {
         super.init(application);
@@ -57,8 +58,13 @@ export class MyScene extends CGFscene {
 
         this.seaweeds = [];
 
-        for (let i = 0; i < Math.ceil(Math.random() * 20); i++) {
-            this.seaweeds.push(new MySeaweedSet(this, [-25 + Math.random() * 50, 0.5, -25 + Math.random() * 50]));
+        for (let i = 0; i < Math.floor(Math.random() * 10) + 10; i++) {
+            var pos = [-24 + Math.random() * 49, 0.5, -24 + Math.random() * 49];
+            if(Math.abs(pos[0] - this.seaFloor.shellX) < 3 || Math.abs(pos[2] - this.seaFloor.shellZ) < 3){
+                i--;
+                continue;
+            }
+            this.seaweeds.push(new MySeaweedSet(this, pos));
         }
 
         this.cubeMaps = [
@@ -106,7 +112,7 @@ export class MyScene extends CGFscene {
         this.lights[0].update();
     }
     initCameras() {
-        this.camera = new CGFcamera(2, 0.1, 500, vec3.fromValues(2, 2, 2), vec3.fromValues(0, 2, 0));
+        this.camera = new CGFcamera2(2, 0.1, 500, vec3.fromValues(2, 2, 2), vec3.fromValues(0, 2, 0));
     }
     setDefaultAppearance() {
         this.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -121,6 +127,7 @@ export class MyScene extends CGFscene {
         this.movingObject.update();
         this.fish.update(t / 100);
         this.seaSurface.update(t );
+        this.seaweeds.forEach(element => {element.update(t)});
     }
     display() {
         // ---- BEGIN Background, camera and axis setup
@@ -248,13 +255,13 @@ export class MyScene extends CGFscene {
         }
 
         if (this.gui.isKeyPressed("KeyP")) {
-            this.fish.elevate(0.1);
+            this.fish.elevate();
             text += " P ";
             keysPressed = true;
         }
 
         if (this.gui.isKeyPressed("KeyL")) {
-            this.fish.lower(0.1);
+            this.fish.lower();
             text += " L ";
             keysPressed = true;
         }

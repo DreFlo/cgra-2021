@@ -9,6 +9,8 @@ export class MyMovingFish extends MyMovingObject {
         this.leftTurn = false;
         this.atBottom = false;
         this.rock = null;
+        this.goingUp = false;
+        this.goingDown = false;
     }
 
     display() {
@@ -27,25 +29,25 @@ export class MyMovingFish extends MyMovingObject {
         this.fish.tailAngle = Math.sin(t * Math.max(Math.abs(this.speed), 0.1)) * ((20 * Math.PI) / 180);
         if (!this.leftTurn) this.fish.righFinAngle = Math.sin(t / 2) * ((10 * Math.PI) / 180);
         if (!this.rightTurn) this.fish.leftFinAngle = - Math.sin(t / 2) * ((10 * Math.PI) / 180);
-
+        if (this.goingUp){
+            if (this.pos[1] < 5) this.pos[1] += 0.1;
+            else this.goingUp = false;
+        }
+        else if(this.goingDown){
+            if (this.pos[1] > 1) this.pos[1] -= 0.1;
+            else this.goingDown = false;
+        }
         if (this.rock !== null) {
             this.rockPositionUpdate();
         }
     }
 
-    elevate(val) {
-        // idk about values
-        if (this.pos[1] >= 3) return;
-        else this.pos[1] += val;
+    elevate() {
+        if(!this.goingDown) this.goingUp = true;
     }
 
-    lower(val) {
-        // idk about values
-        if (this.pos[1] <= 0.5) this.atBottom = true;
-        else {
-            this.pos[1] -= val;
-            this.atBottom = false;
-        }
+    lower() {
+        if(!this.goingUp) this.goingDown = true;
     }
 
 
@@ -58,7 +60,7 @@ export class MyMovingFish extends MyMovingObject {
     capture() {
         if (this.rock !== null) return;
         for (let i = 0; i < this.scene.rocks.nRocks; i++) {
-            if (this.distance(this.pos, this.scene.rocks.rockSet[i].pos) < 1.5 && !this.scene.rocks.rockSet[i].inShell) {
+            if (this.distance(this.pos, this.scene.rocks.rockSet[i].pos) < 1.5 && !this.scene.rocks.rockSet[i].inShell && this.pos[1] <= 1) {
                 this.rock = this.scene.rocks.rockSet[i];
                 this.rockPositionUpdate();
                 return;
@@ -68,9 +70,10 @@ export class MyMovingFish extends MyMovingObject {
 
     release() {
         if (this.rock !== null) {
-            if (this.distance(this.pos, this.scene.seaFloor.shell.pos) < this.scene.seaFloor.shell.radius) this.scene.seaFloor.shell.addRock(this.rock);
-            else this.rock.resetPos();
-            this.rock = null;
+            if ((this.distance(this.pos, this.scene.seaFloor.shell.pos) < this.scene.seaFloor.shell.radius) && (this.pos[1] <= 1)) {
+                this.scene.seaFloor.shell.addRock(this.rock);
+                this.rock = null;
+            }
         }
     }
 
@@ -80,5 +83,11 @@ export class MyMovingFish extends MyMovingObject {
 
     rockPositionUpdate() {
         this.rock.pos =  [this.pos[0] - 0.4 * Math.cos(this.angleYY), this.pos[1], this.pos[2] + 0.4 * Math.sin(this.angleYY)];
+    }
+
+    reset() {
+        super.reset();
+        this.rock.resetPos();
+        this.rock = null;
     }
 }

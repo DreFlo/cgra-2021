@@ -53,8 +53,11 @@ export class MyFish extends CGFobject {
         this.eyeShader = new CGFshader(this.scene.gl, "shaders/eye.vert", "shaders/eye.frag");
 
         this.bodyShader = new CGFshader(this.scene.gl, "shaders/body.vert", "shaders/body.frag");
-        this.bodyShader.setUniformsValues({ ratio: this.ratio});
-        this.bodyShader.setUniformsValues({ bodyColour : this.colour})
+        this.bodyShader.setUniformsValues({ ratio: this.ratio });
+        this.bodyShader.setUniformsValues({ bodyColour : this.colour });
+        this.bodyShader.setUniformsValues({ globalAmbient : [0.1,0.1,0.1, 1.0]});
+        this.bodyShader.setUniformsValues({ uFrontMaterial : this.appearance });
+        this.bodyShader.setUniformsValues({ uLight : this.scene.lights });
     }
 
     display() {

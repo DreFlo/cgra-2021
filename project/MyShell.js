@@ -14,8 +14,17 @@ export class MyShell extends CGFobject {
     this.pos = pos;
     this.rocks = [];
     this.radius = 2;
+    this.rockPos = [];
 
     this.initBuffers();
+
+    for(var xOffset = -1; xOffset < 1; xOffset += 0.3){
+      for(var zOffset = -1; zOffset < 1; zOffset += 0.3) {
+        this.rockPos.push(this.sumArrays([xOffset, 0, zOffset], this.pos));
+      }
+    }
+
+    this.rockPosInArray = 0;
   }
 
   /**
@@ -93,7 +102,13 @@ export class MyShell extends CGFobject {
 
   addRock(rock) {
     this.rocks.push(rock);
-    rock.pos = this.pos;
+    rock.pos = this.rockPos[this.rockPosInArray];
+    console.log(rock.pos);
+    this.rockPosInArray = (this.rockPosInArray + 1) % 49;
     rock.inShell = true;
+  }
+
+  sumArrays(array1, array2){
+    return [array1[0] + array2[0], array1[1] + array2[1], array1[2] + array2[2]];
   }
 }
