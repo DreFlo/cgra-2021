@@ -30,14 +30,14 @@ export class MySeaweed extends CGFobject {
     }
 
     display() {
-        this.scene.setActiveShader(this.shader);
+        //this.scene.setActiveShader(this.shader);
         this.scene.pushMatrix();
         this.appearance.apply();
         this.scene.translate(...this.pos);
         this.scene.scale(this.scale * 0.3, this.scale, this.scale * 0.3);
         this.pyramind.display();
         this.scene.popMatrix();
-        this.scene.setActiveShader(this.scene.defaultShader);
+        //this.scene.setActiveShader(this.scene.defaultShader);
     }
 
     update(t) {
