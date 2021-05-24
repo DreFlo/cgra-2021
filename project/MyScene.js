@@ -241,30 +241,36 @@ export class MyScene extends CGFscene {
 
         // Check for key codes e.g. in https://keycode.info/
         if (this.gui.isKeyPressed("KeyW")) {
+            this.movingObject.accelerate(-0.1);
             this.fish.accelerate(-0.1);
             text += " W ";
             keysPressed = true;
         }
 
         if (this.gui.isKeyPressed("KeyS")) {
+            this.movingObject.accelerate(-0.1);
             this.fish.accelerate(0.1);
             text += " S ";
             keysPressed = true;
         }
 
         if (this.gui.isKeyPressed("KeyA")) {
+            this.movingObject.turn(0.1);
             this.fish.turn(0.1);
             text += " A ";
             keysPressed = true;
         } else if (this.gui.isKeyPressed("KeyD")) {
+            this.movingObject.turn(-0.1);
             this.fish.turn(-0.1);
             text += " D ";
             keysPressed = true;
         } else {
+            this.movingObject.turn(0);
             this.fish.turn(0);
         }
 
         if (this.gui.isKeyPressed("KeyR")) {
+            this.movingObject.reset();
             this.fish.reset();
             text += " R ";
             keysPressed = true;
