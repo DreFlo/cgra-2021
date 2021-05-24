@@ -44,7 +44,7 @@ export class MyScene extends CGFscene {
         this.axis = new CGFaxis(this);
         this.incompleteSphere = new MySphere(this, 16, 8);
         this.movingObject = new MyMovingObject(this, Math.PI / 2, 0.0, 0, 0, 0);
-        this.cilinder = new MyCilinder(this, 8);
+        this.cilinder = new MyCilinder(this, 16);
         this.fish = new MyMovingFish(this, 0.2, 0.0, [0, 5, 0], [0.76, 0.54, 0.89], "images/scale.png");
         this.seaFloor = new MySeaFloor(this, 20, 50, 1);
         this.seaSurface = new MyWaterSurface(this);
@@ -104,8 +104,8 @@ export class MyScene extends CGFscene {
         this.displayAxis = true;
         this.displaySphere = false;
         this.displayMovingObject = false;
-        this.displayCilinder = false;
-        this.displayFish = true;
+        this.displayCilinder = true;
+        this.displayFish = false;
 
         this.speedFactor = 1;
     }
@@ -220,7 +220,7 @@ export class MyScene extends CGFscene {
         this.setActiveShader(this.seaweedShader);
         for (let i = 0; i < this.seaweeds.length; i++) this.seaweeds[i].display();
 
-        
+
          */
         this.setActiveShader(this.defaultShader);
 
