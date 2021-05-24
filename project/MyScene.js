@@ -45,7 +45,7 @@ export class MyScene extends CGFscene {
         this.incompleteSphere = new MySphere(this, 16, 8);
         this.movingObject = new MyMovingObject(this, Math.PI / 2, 0.0, 0, 0, 0);
         this.cilinder = new MyCilinder(this, 8);
-        this.fish = new MyMovingFish(this, 0.2, 0.0, [0, 3, 0], [0.76, 0.54, 0.89], "images/scale.png");
+        this.fish = new MyMovingFish(this, 0.2, 0.0, [0, 5, 0], [0.76, 0.54, 0.89], "images/scale.png");
         this.seaFloor = new MySeaFloor(this, 20, 50, 1);
         this.seaSurface = new MyWaterSurface(this);
         this.rocks = new MyRockSet(this);

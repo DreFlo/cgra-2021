@@ -26,7 +26,7 @@ export class MyFish extends CGFobject {
     }
 
     initObjects() {
-        this.bodySphere = new MySphere(this.scene, 16, 8);
+        this.bodySphere = new MySphere(this.scene, 32, 16);
         this.eye = new MySphere(this.scene, 16, 8);
         this.topFin = new MyTailTriangle(this.scene);
         this.tail = new MyTailTriangle(this.scene);
