@@ -131,7 +131,7 @@ export class MyScene extends CGFscene {
         this.movingObject.update();
         this.fish.update(t / 100);
         this.seaSurface.update(t );
-        this.seaweedShader.setUniformsValues({ timeFactor : t / 200 % 200});
+        //this.seaweedShader.setUniformsValues({ timeFactor : t / 200 % 200});
     }
     display() {
         // ---- BEGIN Background, camera and axis setup
@@ -176,11 +176,10 @@ export class MyScene extends CGFscene {
         }
 
         //Underwater Scene
-        /*
+
         this.seaFloor.display();
         this.seaSurface.display();
         this.rocks.display();
-
 
 
 
@@ -216,11 +215,8 @@ export class MyScene extends CGFscene {
         this.popMatrix();
 
 
-
         this.setActiveShader(this.seaweedShader);
         for (let i = 0; i < this.seaweeds.length; i++) this.seaweeds[i].display();
-
-         */
         this.setActiveShader(this.defaultShader);
 
 
