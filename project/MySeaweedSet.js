@@ -8,7 +8,7 @@ export class MySeaweedSet extends CGFobject {
         this.seaweeds = [];
         for(let i = 0; i < this.numberSeaweeds; i++){
             this.seaweeds.push(new MySeaweed(this.scene, this.sumArrays(pos, [Math.random() - 0.5, 0, Math.random() - 0.5]),
-                                 Math.random() + 1, [0.2, Math.random() * 0.5 + 0.5, 0.3, 1.0]));
+                                 Math.random() + 1, [0.2, Math.random() * 0.5 + 0.5, 0.3]));
         }
     }
 

@@ -6,6 +6,7 @@ export class MySeaweed extends CGFobject {
      * @param {CGFscene} scene
      * @param {number[]} pos
      * @param {number} scale
+     * @param colour
      */
     constructor(scene, pos, scale, colour) {
         super(scene);
@@ -22,6 +23,7 @@ export class MySeaweed extends CGFobject {
     }
 
     display() {
+        this.scene.activeShader.setUniformsValues({ color : this.colour });
         this.scene.pushMatrix();
         this.appearance.apply();
         this.scene.translate(...this.pos);
