@@ -1,4 +1,4 @@
-import { CGFscene, CGFcamera, CGFaxis, CGFappearance, CGFtexture } from "../lib/CGF.js";
+import { CGFscene, CGFcamera, CGFaxis, CGFappearance, CGFtexture, CGFshader } from "../lib/CGF.js";
 import { MySphere } from "./MySphere.js";
 import { MyMovingObject } from "./MyMovingObject.js";
 import { MyCubeMap } from "./MyCubeMap.js";
@@ -96,6 +96,10 @@ export class MyScene extends CGFscene {
 		this.sphereAppearance.setShininess(120);
 		this.sphereAppearance.loadTexture("images/earth.jpg");
 
+        this.seaweedShader = new CGFshader(this.gl, "shaders/seaweed.vert", "shaders/seaweed.frag");
+        this.seaweedShader.setUniformsValues({ color : [0.2, Math.random() * 0.5 + 0.5, 0.3, 1.0] });
+        this.seaweedShader.setUniformsValues({ timeFactor : 0});
+
         //Objects connected to MyInterface
         this.displayAxis = true;
         this.displaySphere = false;
@@ -127,7 +131,7 @@ export class MyScene extends CGFscene {
         this.movingObject.update();
         this.fish.update(t / 100);
         this.seaSurface.update(t );
-        this.seaweeds.forEach(element => {element.update(t)});
+        this.seaweedShader.setUniformsValues({ timeFactor : t / 200 % 200});
     }
     display() {
         // ---- BEGIN Background, camera and axis setup
@@ -207,8 +211,9 @@ export class MyScene extends CGFscene {
         this.pillar6.display();
         this.popMatrix();
 
+        this.setActiveShader(this.seaweedShader);
         for (let i = 0; i < this.seaweeds.length; i++) this.seaweeds[i].display();
-
+        this.setActiveShader(this.defaultShader);
 
         this.defaultAppearance.apply();
 

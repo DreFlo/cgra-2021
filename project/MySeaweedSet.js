@@ -1,21 +1,15 @@
-import {CGFobject} from "../lib/CGF.js";
+import {CGFobject, CGFshader} from "../lib/CGF.js";
 import {MySeaweed} from "./MySeaweed.js";
 
 export class MySeaweedSet extends CGFobject {
     constructor(scene, pos) {
         super(scene);
-        this.numberSeaweeds = Math.floor(Math.random() * (10 - 5)) + 5;
-        console.log(this.numberSeaweeds);
+        this.numberSeaweeds = Math.floor(Math.random() * 10) + 5;
         this.seaweeds = [];
         for(let i = 0; i < this.numberSeaweeds; i++){
-            console.log("CREATED");
             this.seaweeds.push(new MySeaweed(this.scene, this.sumArrays(pos, [Math.random() - 0.5, 0, Math.random() - 0.5]),
                                  Math.random() + 1, [0.2, Math.random() * 0.5 + 0.5, 0.3, 1.0]));
         }
-    }
-
-    update(t) {
-        this.seaweeds.forEach(element => { element.update(t); });
     }
 
     display() {

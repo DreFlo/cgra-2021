@@ -13,15 +13,7 @@ export class MySeaweed extends CGFobject {
         this.scale = scale;
         this.colour = colour;
         this.initAppearance();
-        this.initShader();
         this.pyramind = new MyPyramid(scene);
-    }
-
-    initShader() {
-        this.shader = new CGFshader(this.scene.gl, "shaders/seaweed.vert", "shaders/seaweed.frag");
-        this.shader.setUniformsValues({ color : this.colour });
-        this.shader.setUniformsValues({ timeFactor : 0});
-        this.shader.setUniformsValues({ scale : this.scale });
     }
 
     initAppearance() {
@@ -30,17 +22,11 @@ export class MySeaweed extends CGFobject {
     }
 
     display() {
-        //this.scene.setActiveShader(this.shader);
         this.scene.pushMatrix();
         this.appearance.apply();
         this.scene.translate(...this.pos);
         this.scene.scale(this.scale * 0.3, this.scale, this.scale * 0.3);
         this.pyramind.display();
         this.scene.popMatrix();
-        //this.scene.setActiveShader(this.scene.defaultShader);
-    }
-
-    update(t) {
-        this.shader.setUniformsValues({ timeFactor : t });
     }
 }
