@@ -176,9 +176,13 @@ export class MyScene extends CGFscene {
         }
 
         //Underwater Scene
+        /*
         this.seaFloor.display();
         this.seaSurface.display();
         this.rocks.display();
+
+
+
 
         //Pillars
         this.pushMatrix();
@@ -211,9 +215,16 @@ export class MyScene extends CGFscene {
         this.pillar6.display();
         this.popMatrix();
 
+
+
         this.setActiveShader(this.seaweedShader);
         for (let i = 0; i < this.seaweeds.length; i++) this.seaweeds[i].display();
+
+        
+         */
         this.setActiveShader(this.defaultShader);
+
+
 
         this.defaultAppearance.apply();
 
