@@ -1,5 +1,5 @@
 import {CGFobject, CGFshader, CGFtexture, CGFappearance} from '../lib/CGF.js';
-import { MyPlane } from '../MyPlane.js';
+import { MyPlane } from './MyPlane.js';
 import { MyShell } from './MyShell.js';
 
 export class MySeaFloor extends CGFobject {
