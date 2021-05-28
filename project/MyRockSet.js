@@ -13,8 +13,6 @@ export class MyRockSet extends CGFobject {
 
     this.nRocks = 30;
 
-    //this.nRocks = 15; //For Picture
-
     this.appearance = new CGFappearance(this.scene);
     this.appearance.setAmbient(...this.hexToRgbA("#262626"));
     this.appearance.setDiffuse(...this.hexToRgbA("#262626"));
@@ -25,13 +23,6 @@ export class MyRockSet extends CGFobject {
     for(let i = 0; i < this.nRocks; i++){
         this.rockSet.push(new MyRock(this.scene, 16, 16, [Math.random() * 50 - 25, 0.5, Math.random() * 50 - 25], [0.1 + Math.random() * 0.1, 0.1 + Math.random() * 0.1, 0.1 + Math.random() * 0.1]));
     }
-
-    /*
-    //for picture
-    for(var i = 0; i < this.rockSet.length; i++){
-        this.translates[i] = [Math.random() * 2 - 1, 0.5, Math.random() * 2 - 1]
-        this.scales[i] = [Math.random() * 2 / 10, Math.random() * 2 / 10, Math.random() * 2 / 10];
-    }*/
   }
 
   display(){
