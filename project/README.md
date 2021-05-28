@@ -63,7 +63,7 @@ Na próxima imagem verifica-se a implementação do peixe a carregar uma pedra e
 
 &nbsp;
 
-No ponto 7, foram realizados os seguintes pontos no total de 3 valores:
+No ponto 7, foram realizados os seguintes pontos no total de 3 valores que podem ser verificados na imagem:
 - 7.1. Algas
 - 7.2. Algas animadas
 - 7.6. Shader do peixe melhorado
@@ -71,4 +71,3 @@ No ponto 7, foram realizados os seguintes pontos no total de 3 valores:
 | ![](screenshots/proj-t05g02-8.png) | 
 |:--:| 
 | *proj-t05g02-8* |
-
